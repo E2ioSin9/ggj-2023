@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -15,10 +16,14 @@ public class LightTurnOffRoom1 : MonoBehaviour
 
     [SerializeField] private GameObject root;
 
+    private AudioSource _audioSource;
+    [SerializeField] private float WaitForSecondsAudio;
+
     private void Start()
     {
         root.SetActive(false);
         _initialIntensity = light.intensity;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     /*private void Update()
@@ -41,6 +46,8 @@ public class LightTurnOffRoom1 : MonoBehaviour
 
     public void TriggerOffLight()
     {
+        StartCoroutine(PlayAudio());
+        
         DOTween.Sequence()
             .AppendInterval(waitForSecondsTrigger)
             .Append(light.DOIntensity(lowLightIntensity, lightFlashDuration))
@@ -52,5 +59,11 @@ public class LightTurnOffRoom1 : MonoBehaviour
             {
                 root.SetActive(true);
             });
+    }
+
+    private IEnumerator PlayAudio()
+    {
+        yield return new WaitForSeconds(WaitForSecondsAudio);
+        _audioSource.Play();
     }
 }
