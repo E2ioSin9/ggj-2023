@@ -8,6 +8,9 @@ public class Door : Interactable
     [SerializeField] private bool isLocked;
     [SerializeField] private Canvas info;
 
+    [SerializeField] private AudioSource lockSFX;
+    [SerializeField] private AudioSource openSFX;
+
     [SerializeField] private Transform doorTransform;
 
     private void Start()
@@ -21,6 +24,7 @@ public class Door : Interactable
         if (isLocked)
         {
             info.gameObject.SetActive(true);
+            lockSFX.Play();
 
             CancelInvoke();
             Invoke(nameof(DisactiveInfoCanvas), 2f);
@@ -29,6 +33,7 @@ public class Door : Interactable
         {
             //door open
             doorTransform.DOLocalMoveZ(-19, 1);
+            openSFX.Play();
         }
     }
 

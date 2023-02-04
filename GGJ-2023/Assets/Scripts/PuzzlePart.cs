@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PuzzlePart : Interactable
 {
@@ -14,6 +15,7 @@ public class PuzzlePart : Interactable
     [SerializeField] private TextMeshPro ansText;
 
     public Action OnAnswerChanged;
+    public UnityEvent OnAnswerChangedUnityEvent;
 
     private void Start()
     {
@@ -33,6 +35,7 @@ public class PuzzlePart : Interactable
 
         SetAnswer(curAnswerListIndex);
         OnAnswerChanged?.Invoke();
+        OnAnswerChangedUnityEvent?.Invoke();
     }
 
     public override void ShowHighlight()
