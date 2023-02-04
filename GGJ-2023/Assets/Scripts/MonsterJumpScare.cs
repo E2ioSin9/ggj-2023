@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MonsterJumpScare : MonoBehaviour
 {
@@ -18,12 +19,15 @@ public class MonsterJumpScare : MonoBehaviour
 
     Coroutine flyForwardCoroutine;
 
+    public UnityEvent OnJumpScare;
+
     public void SuddenAppearHereAndDisappear()
     {
         monster.transform.position = transform.position;
 
         //Monster stop moving
         //Play scare audio
+        OnJumpScare?.Invoke();
     }
 
     [ContextMenu("StartFlyToForward")]
@@ -50,6 +54,8 @@ public class MonsterJumpScare : MonoBehaviour
         {
             monster.StartFlashing(flashingInterval);
         }
+
+        OnJumpScare?.Invoke();
 
         float t = 0f;
 
