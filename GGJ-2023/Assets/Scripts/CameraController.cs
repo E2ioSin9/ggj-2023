@@ -1,10 +1,10 @@
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private PostProcessVolume postProcessVolume;
+    [SerializeField] private Volume postProcessVolume;
 
     private bool isUsingCamera;
 
