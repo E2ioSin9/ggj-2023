@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Puzzle : MonoBehaviour
 {
     [SerializeField] private string answerString;
     [SerializeField] PuzzlePart[] puzzleParts;
+
+    public UnityEvent OnCorrectAnswer;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -35,7 +38,7 @@ public class Puzzle : MonoBehaviour
 
         if (answerString.CompareTo(output) == 0)
         {
-            Debug.Log("Correct Ans!");
+            OnCorrectAnswer?.Invoke();
         }
     }
     
