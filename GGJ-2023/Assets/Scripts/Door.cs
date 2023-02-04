@@ -10,6 +10,8 @@ public class Door : Interactable
 
     [SerializeField] private AudioSource lockSFX;
     [SerializeField] private AudioSource openSFX;
+    [SerializeField] private AudioSource bossBGM;
+    [SerializeField] private AudioSource oldBGM;
 
     [SerializeField] private Transform doorTransform;
 
@@ -34,6 +36,8 @@ public class Door : Interactable
             //door open
             doorTransform.DOLocalMoveZ(-19, 1);
             openSFX.Play();
+            bossBGM.Play();
+            oldBGM.Pause();
         }
     }
 
